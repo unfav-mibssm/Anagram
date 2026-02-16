@@ -1,0 +1,159 @@
+:root {
+    --primary-bg: #1a2a6c;
+    --accent-color: #fdbb2d;
+    --box-border: #ecf0f1;
+    --success-green: #2ecc71;
+    --text-white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-white);
+}
+
+.game-wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+/* Header & Stats */
+header {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: rgba(255,255,255,0.1);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--box-border);
+}
+
+.label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+}
+
+#timer-display, #score-display {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Jumbled Letters Area */
+.jumbled-word {
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 8px;
+    margin: 20px 0;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-transform: uppercase;
+}
+
+/* The Grid for 3, 4, 5 letter words */
+#word-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.word-row {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.letter-slot {
+    width: 25px;
+    height: 25px;
+    border: 2px solid var(--box-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background: transparent;
+    border-radius: 4px;
+}
+
+.letter-slot.revealed {
+    background: var(--success-green);
+    border-color: var(--success-green);
+    animation: pop 0.3s ease-out;
+}
+
+/* Input Styles */
+input#word-input {
+    width: 80%;
+    padding: 12px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Buttons */
+button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent-color);
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.hidden { display: none !important; }
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal-content {
+    background: white;
+    color: black;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Animation */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

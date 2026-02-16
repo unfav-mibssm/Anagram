@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagram Master - Word Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <header>
+            <div class="stat-box">
+                <span class="label">TIME</span>
+                <span id="timer-display">02:00</span>
+            </div>
+            <div class="stat-box">
+                <span class="label">SCORE</span>
+                <span id="score-display">0</span>
+            </div>
+        </header>
+
+        <div id="jumbled-container" class="jumbled-word"></div>
+
+        <main id="word-grid-container"></main>
+
+        <section class="input-area">
+            <input type="text" id="word-input" placeholder="Type word & press Enter" autocomplete="off" autofocus>
+            <div id="feedback-message"></div>
+        </section>
+
+        <footer class="controls">
+            <button id="shuffle-btn">Shuffle Letters</button>
+            <button id="next-level-btn" class="hidden">Next Level</button>
+        </footer>
+    </div>
+
+    <div id="game-over-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Time's Up!</h2>
+            <p id="final-stats"></p>
+            <div id="missed-words-list"></div>
+            <button id="modal-next-btn" onclick="document.getElementById('next-level-btn').click()">Next Level</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
