@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anagram Master - Word Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Anagram Master Mobile</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="./manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
 
@@ -12,38 +15,62 @@
         <header>
             <div class="stat-box">
                 <span class="label">TIME</span>
-                <span id="timer-display">02:00</span>
+                <div id="timer-display">5:00</div>
             </div>
             <div class="stat-box">
                 <span class="label">SCORE</span>
-                <span id="score-display">0</span>
+                <div id="score-display">0</div>
+            </div>
+            <div class="stat-box">
+                <span class="label">BEST</span>
+                <div id="high-score-display">0</div>
             </div>
         </header>
 
-        <div id="jumbled-container" class="jumbled-word"></div>
+        <div id="word-grid-container"></div>
 
-        <main id="word-grid-container"></main>
+        <div id="status-message">Tap Start to Begin!</div>
 
-        <section class="input-area">
-            <input type="text" id="word-input" placeholder="Type word & press Enter" autocomplete="off" autofocus>
-            <div id="feedback-message"></div>
-        </section>
+        <div id="jumbled-container" class="jumbled-word">-------</div>
 
-        <footer class="controls">
-            <button id="shuffle-btn">Shuffle Letters</button>
-            <button id="next-level-btn" class="hidden">Next Level</button>
+        <div class="input-section">
+            <input type="text" id="word-input" placeholder="TYPE HERE..." autocomplete="off" spellcheck="false">
+        </div>
+
+        <footer>
+            <button id="shuffle-btn">START GAME</button>
+            <button id="hint-btn">Hint (-20)</button>
+            <button id="skip-btn">Skip (-50)</button>
+            <button id="next-level-btn" class="hidden">NEXT</button>
         </footer>
+
+        <div class="my-watermark">© mibsam – ft. Bald-e</div>
     </div>
 
     <div id="game-over-modal" class="modal hidden">
         <div class="modal-content">
             <h2>Time's Up!</h2>
             <p id="final-stats"></p>
-            <div id="missed-words-list"></div>
-            <button id="modal-next-btn" onclick="document.getElementById('next-level-btn').click()">Next Level</button>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                <button id="modal-next-btn" style="padding: 10px 15px; background: #4caf50; color: white; border: none; border-radius: 8px; font-weight: bold;">Play Again</button>
+                <button id="review-btn" style="padding: 10px 15px; background: #2196f3; color: white; border: none; border-radius: 8px; font-weight: bold;">Review Words</button>
+            </div>
         </div>
     </div>
 
+    <button id="close-review-btn" class="hidden">Back to Result</button>
+
     <script src="script.js"></script>
+    <script>
+if ("serviceWorker" in navigator) {
+  // We use a relative path './' instead of '/ANAGRAM/' 
+  // to stay within the security "scope"
+  navigator.serviceWorker.register("./service-worker.js")
+    .then(() => console.log("Offline Mode Ready"))
+    .catch(error => console.error("SW Error:", error));
+}
+</script>
+
+
 </body>
 </html>
